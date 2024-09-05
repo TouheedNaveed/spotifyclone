@@ -1,4 +1,3 @@
-console.log("Welcom rj");
 //Initialize variables
 let songIndex = 0;
 let audioElement = new Audio('songs/1.mp3');
@@ -25,7 +24,7 @@ let songs = [
         songName: "NCS - Song 5", filePath: "songs/8.mp3", coverPath: "covers/5.jpg"
     },
     {
-        songName: "NCS - Song 6", filePath: "songs/10.mp3", coverPath: "covers/6.jpg"
+        songName: "NCS - Song 6", filePath: "songs/6.mp3", coverPath: "covers/6.jpg"
     },
 ];
 //Duration of each song
@@ -100,7 +99,7 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element) =>
 })
 //next click
 document.getElementById('next').addEventListener('click', () => {
-    if (songIndex > 9) {
+    if (songIndex >=5) {
         songIndex = 0;
     }
     else {
