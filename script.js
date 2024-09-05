@@ -24,7 +24,7 @@ let songs = [
         songName: "NCS - Song 5", filePath: "songs/8.mp3", coverPath: "covers/5.jpg"
     },
     {
-        songName: "NCS - Song 6", filePath: "songs/6.mp3", coverPath: "covers/6.jpg"
+        songName: "Byg Bird - Sidhumoosewala", filePath: "songs/6.mp3", coverPath: "covers/6.jpg"
     },
 ];
 //Duration of each song
