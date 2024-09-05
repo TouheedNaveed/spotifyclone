@@ -27,12 +27,27 @@ let songs = [
     {
         songName: "NCS - Song 6", filePath: "songs/10.mp3", coverPath: "covers/6.jpg"
     },
-]
-songItems.forEach((element, i) => {
-    element.getElementsByTagName("img")[0].src = songs[i].coverPath;
-    element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
+];
+//Duration of each song
+const formatDuration = (duration) => {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+//Loading information in HTML dynamically 
+const loadSongInfo = () => {
+    songItems.forEach((element, i) => {
+        element.getElementsByTagName("img")[0].src = songs[i].coverPath;
+        element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
+        const audio = new Audio(songs[i].filePath);
+        audio.addEventListener('loadedmetadata', () => {
+            const duration = formatDuration(audio.duration);
+            element.getElementsByClassName("timestamp")[0].innerText = duration;
+        });
+    });
+}
 
-})
+loadSongInfo(); 
 //handle play/pause click
 masterPlay.addEventListener('click', () => {
     if (audioElement.paused || audioElement.currentTime <= 0) {
@@ -115,14 +130,3 @@ document.getElementById('previous').addEventListener('click', () => {
     masterPlay.classList.remove('fa-circle-play');
     masterPlay.classList.add('fa-circle-pause');
 })
-
-
-// Wait for the metadata to be loaded to get the duration
-audioElement.addEventListener('loadedmetadata', () => {
-  // Get the duration in seconds
-  const duration = audioElement.duration;
-  const minutes = Math.floor(duration / 60);
-  const seconds = Math.floor(duration % 60);
-
-  console.log(`Duration: ${minutes} minutes and ${seconds} seconds`);
-});
